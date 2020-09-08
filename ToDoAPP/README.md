@@ -1,6 +1,7 @@
 # todo
 
-A new Flutter application.
+A new Flutter application to add your to do task.
+Currently the app is not completed.
 
 ## Getting Started
 
