@@ -347,6 +347,7 @@ class _nurseState extends State<nurse> {
       'from':defaul1+defaul2,
       'to':defa1+def2,
       'corona test':initial,
+      'id':uid,
     });
   }
 }

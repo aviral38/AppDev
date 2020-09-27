@@ -9,84 +9,16 @@ class medical extends StatefulWidget {
 final _auth = FirebaseAuth.instance;
 final User user = _auth.currentUser;
 final ref=FirebaseDatabase.instance.reference();
-var mon,tue,wed,thu,fri,sat,sun;
+var mon="NA",tue="NA",wed="NA",thu="NA",fri="NA",sat="NA",sun="NA";
 class _medicalState extends State<medical> {
   @override
   void initState()
   {
-    User user = _auth.currentUser;
-    var uid = user.uid;
-    print(uid);
-    ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {
-      mon=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Tuesday').once().then((DataSnapshot dataSnapshot) {
-      tue=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Wednesday').once().then((DataSnapshot dataSnapshot) {
-      wed=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Thursday').once().then((DataSnapshot dataSnapshot) {
-      thu=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Friday').once().then((DataSnapshot dataSnapshot) {
-      fri=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Saturday').once().then((DataSnapshot dataSnapshot) {
-      sat=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
-      sun=dataSnapshot.value;
-
-    });
     super.initState();
+    dat();
   }
   @override
-
   Widget build(BuildContext context) {
-    @override
-    void initState()
-    {
-      User user = _auth.currentUser;
-      var uid = user.uid;
-      print(uid);
-      ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {
-        mon=dataSnapshot.value;
-
-      });
-      ref.child('Medi').child(uid).child('Tuesday').once().then((DataSnapshot dataSnapshot) {
-        tue=dataSnapshot.value;
-
-      });
-      ref.child('Medi').child(uid).child('Wednesday').once().then((DataSnapshot dataSnapshot) {
-        wed=dataSnapshot.value;
-
-      });
-      ref.child('Medi').child(uid).child('Thursday').once().then((DataSnapshot dataSnapshot) {
-        thu=dataSnapshot.value;
-
-      });
-      ref.child('Medi').child(uid).child('Friday').once().then((DataSnapshot dataSnapshot) {
-        fri=dataSnapshot.value;
-
-      });
-      ref.child('Medi').child(uid).child('Saturday').once().then((DataSnapshot dataSnapshot) {
-        sat=dataSnapshot.value;
-
-      });
-      ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
-        sun=dataSnapshot.value;
-
-      });
-      super.initState();
-    }
-    dataa();
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: ListView(
@@ -274,6 +206,100 @@ class _medicalState extends State<medical> {
     });
     ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
       sun=dataSnapshot.value;
+
+    });
+  }
+  void dat() async{
+    User user = _auth.currentUser;
+    var uid = user.uid;
+    print(uid);
+    ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        mon = dataSnapshot.value;
+      }
+
+    });
+    ref.child('Medi').child(uid).child('Tuesday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        tue = dataSnapshot.value;
+      }
+
+    });
+    ref.child('Medi').child(uid).child('Wednesday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        wed = dataSnapshot.value;
+      }
+
+    });
+    ref.child('Medi').child(uid).child('Thursday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        thu = dataSnapshot.value;
+      }
+
+    });
+    ref.child('Medi').child(uid).child('Friday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        fri = dataSnapshot.value;
+      }
+
+    });
+    ref.child('Medi').child(uid).child('Saturday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        sat = dataSnapshot.value;
+      }
+
+    });
+    ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null)
+      {
+        sun=dataSnapshot.value;
+      }
+
+    });
+    setState(() {
+      ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null) {
+          mon = dataSnapshot.value;
+        }
+
+      });
+      ref.child('Medi').child(uid).child('Tuesday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null) {
+          tue = dataSnapshot.value;
+        }
+
+      });
+      ref.child('Medi').child(uid).child('Wednesday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null) {
+          wed = dataSnapshot.value;
+        }
+
+      });
+      ref.child('Medi').child(uid).child('Thursday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null) {
+          thu = dataSnapshot.value;
+        }
+
+      });
+      ref.child('Medi').child(uid).child('Friday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null) {
+          fri = dataSnapshot.value;
+        }
+
+      });
+      ref.child('Medi').child(uid).child('Saturday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null) {
+          sat = dataSnapshot.value;
+        }
+
+      });
+      ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
+        if(dataSnapshot.value!=null)
+        {
+          sun=dataSnapshot.value;
+        }
+
+      });
 
     });
   }

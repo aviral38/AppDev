@@ -3,6 +3,7 @@ import 'package:nurseirator/button.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+
 class registration extends StatefulWidget {
   @override
   _registrationState createState() => _registrationState();
@@ -11,6 +12,7 @@ class registration extends StatefulWidget {
 final DBRef = FirebaseDatabase.instance.reference();
 final FirebaseAuth _auth = FirebaseAuth.instance;
 bool showSpinner = false;
+
 class _registrationState extends State<registration> {
   @override
   String initial = 'male';
@@ -183,7 +185,8 @@ class _registrationState extends State<registration> {
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2.0)),
+                            border:
+                                Border.all(color: Colors.black, width: 2.0)),
                         child: DropdownButton(
                             hint: Text('Enter your gender'),
                             dropdownColor: Colors.blueGrey,
@@ -389,15 +392,12 @@ class _registrationState extends State<registration> {
 
                     if (newuser != null) {
                       write();
-                      if(role=='Patient')
-                        {
-                          Navigator.pushNamed(context, '/patient');
-                        }
-                      else if(role=='Nurse')
-                        {
-                          Navigator.pushNamed(context, '/nurse');
-                        }
-                      if(role=='Doctor'){
+                      if (role == 'Patient') {
+                        Navigator.pushNamed(context, '/patient');
+                      } else if (role == 'Nurse') {
+                        Navigator.pushNamed(context, '/nurse');
+                      }
+                      if (role == 'Doctor') {
                         Navigator.pushNamed(context, '/nurse');
                       }
                       print('done');
@@ -406,6 +406,7 @@ class _registrationState extends State<registration> {
                       showSpinner = false;
                     });
                   } catch (e) {
+                    dialog(e.toString());
                     print(e);
                     setState(() {
                       showSpinner = false;
@@ -433,7 +434,7 @@ class _registrationState extends State<registration> {
         'Role': role,
         'State': state,
         'ZipCode': zipcode,
-        'uid':uid,
+        'uid': uid,
       });
     } else if (role == 'Nurse') {
       DBRef.child("nurse").child(uid).set({
@@ -447,7 +448,7 @@ class _registrationState extends State<registration> {
         'Role': role,
         'State': state,
         'ZipCode': zipcode,
-        'uid':uid,
+        'uid': uid,
       });
     } else {
       DBRef.child("patient").child(uid).set({
@@ -461,7 +462,7 @@ class _registrationState extends State<registration> {
         'Role': role,
         'State': state,
         'ZipCode': zipcode,
-        'uid':uid,
+        'uid': uid,
       });
     }
   }
@@ -485,5 +486,17 @@ class _registrationState extends State<registration> {
       'State': state,
       'ZipCode': zipcode,
     });
+  }
+  Future<void> dialog(var a) async{
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(a),
+            elevation: 24.0,
+          );
+        });
   }
 }
