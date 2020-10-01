@@ -4,6 +4,7 @@ import 'package:nurseirator/Registration.dart';
 import 'package:nurseirator/available.dart';
 import 'package:nurseirator/login.dart';
 import 'package:nurseirator/nurse.dart';
+import 'package:nurseirator/update.dart';
 import 'package:nurseirator/welcomeScreen.dart';
 import 'package:nurseirator/patient.dart';
 import 'package:nurseirator/medicine.dart';
@@ -15,6 +16,7 @@ import 'nurse.dart';
 import 'package:nurseirator/booked.dart';
 import 'package:nurseirator/chatbot.dart';
 import 'package:nurseirator/available.dart';
+import 'package:provider/provider.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -28,20 +30,23 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/':(context)=>welcomeScreen(),
-        '/register':(context)=>registerScreen(),
-        '/reg':(context)=>registration(),
-        '/login':(context)=>loginScreen(),
-        '/patient':(context)=>patient(),
-        '/nurse':(context)=>nurse(),
-        '/medical':(context)=>medical(),
-        '/bot':(context)=>chatbot(),
-        '/avail':(context)=>avail(),
-        '/book':(context)=>booked(),
-      },
+    return ChangeNotifierProvider(
+      create: (context)=>update(),
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/':(context)=>welcomeScreen(),
+          '/register':(context)=>registerScreen(),
+          '/reg':(context)=>registration(),
+          '/login':(context)=>loginScreen(),
+          '/patient':(context)=>patient(),
+          '/nurse':(context)=>nurse(),
+          '/medical':(context)=>medical(),
+          '/bot':(context)=>chatbot(),
+          '/avail':(context)=>avail(),
+          '/book':(context)=>booked(),
+        },
+      ),
     );
   }
 }

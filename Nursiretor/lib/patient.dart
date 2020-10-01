@@ -4,6 +4,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:nurseirator/button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nurseirator/update.dart';
+import 'package:provider/provider.dart';
 class patient extends StatefulWidget {
   @override
   _patientState createState() => _patientState();
@@ -34,6 +36,7 @@ class _patientState extends State<patient> {
   List test=['one week ago','one month ago','more than a month ago'];
   String mon,tue,wed,thu,fri,sat,sun;
   Widget build(BuildContext context) {
+    final update u=Provider.of<update>(context);
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Container(
@@ -278,8 +281,20 @@ class _patientState extends State<patient> {
               child: buttonn(
                 colour: Colors.grey,
                 chilld: Text('Update Detail'),
-                onpress: (){
+                onpress: ()async{
                   write();
+                  print('done');
+                  u.up();
+                },
+              ),
+            ),
+            SizedBox(height: 15,),
+            Container(
+              child: buttonn(
+                colour: Colors.grey,
+                chilld: Text('View Medicines'),
+                onpress: ()async{
+                  u.up();
                   print('done');
                   Navigator.pushNamed(context, '/medical');
                 },
@@ -292,7 +307,7 @@ class _patientState extends State<patient> {
       ),
     );
   }
-  void write()
+  void write() async
   {
    User user = _auth.currentUser;
    var uid = user.uid;

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nurseirator/button.dart';
+import 'package:nurseirator/update.dart';
+import 'package:provider/provider.dart';
 class medical extends StatefulWidget {
   @override
   _medicalState createState() => _medicalState();
@@ -9,16 +11,20 @@ class medical extends StatefulWidget {
 final _auth = FirebaseAuth.instance;
 final User user = _auth.currentUser;
 final ref=FirebaseDatabase.instance.reference();
-var mon="NA",tue="NA",wed="NA",thu="NA",fri="NA",sat="NA",sun="NA";
+
 class _medicalState extends State<medical> {
   @override
   void initState()
   {
     super.initState();
-    dat();
+    print('hello');
   }
   @override
   Widget build(BuildContext context) {
+    //update u=new update();
+    final update uu=Provider.of<update>(context);
+    //Provider.of<update>(context).up();
+    var mon=uu.mon,tue=uu.tue,wed=uu.wed,thu=uu.thu,fri=uu.fri,sat=uu.sat,sun=uu.sun;
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: ListView(
@@ -175,7 +181,7 @@ class _medicalState extends State<medical> {
       ),
     );
   }
-  void dataa()
+ /* void dataa()
   {
     User user = _auth.currentUser;
     var uid = user.uid;
@@ -208,8 +214,8 @@ class _medicalState extends State<medical> {
       sun=dataSnapshot.value;
 
     });
-  }
-  void dat() async{
+  }*/
+  /*void dat() async{
     User user = _auth.currentUser;
     var uid = user.uid;
     print(uid);
@@ -302,6 +308,6 @@ class _medicalState extends State<medical> {
       });
 
     });
-  }
+  }*/
 
 }
