@@ -7,7 +7,36 @@ final User user = _auth.currentUser;
 final ref=FirebaseDatabase.instance.reference();
 class update extends ChangeNotifier{
   var mon="NA",tue="NA",wed="NA",thu="NA",fri="NA",sat="NA",sun="NA";
+  String name="NA",lis="NA",hospital="NA",test="NA";
   var uid = user.uid;
+  void show()
+  {
+    ref.child('booking').child(uid).child('Name').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        name = dataSnapshot.value;
+      }
+
+    });
+    ref.child('booking').child(uid).child('liscense').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        lis = dataSnapshot.value;
+      }
+
+    });
+    ref.child('booking').child(uid).child('hospital').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        hospital = dataSnapshot.value;
+      }
+
+    });
+    ref.child('booking').child(uid).child('test').once().then((DataSnapshot dataSnapshot) {
+      if(dataSnapshot.value!=null) {
+        test = dataSnapshot.value;
+      }
+
+    });
+    notifyListeners();
+  }
   void up()
   {
     ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {

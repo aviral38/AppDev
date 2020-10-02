@@ -12,9 +12,9 @@ final _auth=FirebaseAuth.instance;
 bool showSpinner = false;
 String email;
 String password;
+String role='Patient';
 class _loginScreenState extends State<loginScreen> {
-  var mon,tue,wed,thu,fri,sat,sun;
-
+  List roole = ['Doctor', 'Nurse', 'Patient'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +67,44 @@ class _loginScreenState extends State<loginScreen> {
                   ),
                 ),
                 SizedBox(height: 10,),
+                Container(
+                  child: Row(
+                    children: [
+                      Text(
+                        'Role',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(
+                        width: 45,
+                      ),
+                      Flexible(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 2.0)),
+                          child: DropdownButton(
+                              hint: Text('Enter your Role'),
+                              dropdownColor: Colors.grey,
+                              elevation: 5,
+                              icon: Icon(Icons.arrow_drop_down),
+                              iconSize: 30,
+                              value: role,
+                              onChanged: (value) {
+                                setState(() {
+                                  role = value;
+                                });
+                              },
+                              items: roole.map((value) {
+                                return DropdownMenuItem(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList()),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10,),
                 buttonn(
                   colour: Colors.lightBlue,
                   chilld: Text('LogIn'),
@@ -74,62 +112,26 @@ class _loginScreenState extends State<loginScreen> {
                     setState(() {
                       showSpinner = true;
                     });
-
-                    try{
-                      final user=await _auth.signInWithEmailAndPassword(email: email, password: password);
-                      print(email);
-                      if(user!=null)
-                      {
-                        User us=_auth.currentUser;
-                        var uid=us.uid;
-                        print(uid);
-                        final ref=FirebaseDatabase.instance.reference();
-                        dataa();
-                        User user = _auth.currentUser;
-                        print(uid);
-                        ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {
-                          mon=dataSnapshot.value;
-
-                        });
-                        ref.child('Medi').child(uid).child('Tuesday').once().then((DataSnapshot dataSnapshot) {
-                          tue=dataSnapshot.value;
-
-                        });
-                        ref.child('Medi').child(uid).child('Wednesday').once().then((DataSnapshot dataSnapshot) {
-                          wed=dataSnapshot.value;
-
-                        });
-                        ref.child('Medi').child(uid).child('Thursday').once().then((DataSnapshot dataSnapshot) {
-                          thu=dataSnapshot.value;
-
-                        });
-                        ref.child('Medi').child(uid).child('Friday').once().then((DataSnapshot dataSnapshot) {
-                          fri=dataSnapshot.value;
-
-                        });
-                        ref.child('Medi').child(uid).child('Saturday').once().then((DataSnapshot dataSnapshot) {
-                          sat=dataSnapshot.value;
-
-                        });
-                        ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
-                          sun=dataSnapshot.value;
-
-                        });
-
-                        /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => medical(uu: us.uid,mon: mon,tue: tue,wed: wed,thu: thu,fri: fri,sat: sat,sun: sun,),
-                            ));*/
-                        print("mos is"+'$mon');
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      if (user != null){
+                        if (role == 'Patient') {
+                          Navigator.pushNamed(context, '/patient');
+                        }
+                        else if (role == 'Nurse') {
+                          Navigator.pushNamed(context, '/nurse');
+                        }
+                        else {
+                          Navigator.pushNamed(context, '/nurse');
+                        }
+                        print('done');
                       }
                       setState(() {
                         showSpinner = false;
                       });
-
                     }
-                    catch(e)
-                    {
+                    catch (e) {
                       print(e);
                       setState(() {
                         showSpinner = false;
@@ -144,40 +146,6 @@ class _loginScreenState extends State<loginScreen> {
         ),
       ),
     );
-  }
-void dataa()
-  {
-    User user = _auth.currentUser;
-    var uid = user.uid;
-    print(uid);
-    ref.child('Medi').child(uid).child('Monday').once().then((DataSnapshot dataSnapshot) {
-      mon=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Tuesday').once().then((DataSnapshot dataSnapshot) {
-      tue=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Wednesday').once().then((DataSnapshot dataSnapshot) {
-      wed=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Thursday').once().then((DataSnapshot dataSnapshot) {
-      thu=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Friday').once().then((DataSnapshot dataSnapshot) {
-      fri=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Saturday').once().then((DataSnapshot dataSnapshot) {
-      sat=dataSnapshot.value;
-
-    });
-    ref.child('Medi').child(uid).child('Sunday').once().then((DataSnapshot dataSnapshot) {
-      sun=dataSnapshot.value;
-
-    });
   }
 
 }

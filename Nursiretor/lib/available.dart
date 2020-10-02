@@ -6,11 +6,12 @@ import 'package:nurseirator/button.dart';
 import 'package:nurseirator/button.dart';
 import 'booked.dart';
 import 'data.dart';
+import 'package:nurseirator/update.dart';
+import'package:provider/provider.dart';
 final _auth = FirebaseAuth.instance;
 final User user = _auth.currentUser;
 final uid = user.uid;
 final ref=FirebaseDatabase.instance.reference();
-
 
 class avail extends StatefulWidget {
   @override
@@ -41,90 +42,90 @@ class _availState extends State<avail> {
   }
   @override
   Widget build(BuildContext context) {
+    final update u=Provider.of<update>(context);
     print(datalist.length);
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: datalist.length==null?Text("No nurse Avilable"):ListView.builder(
       itemCount: datalist.length,
           itemBuilder: (_,index){
-        return CardUI(datalist[index].lis,datalist[index].test,datalist[index].to,datalist[index].from,datalist[index].hos,datalist[index].name,datalist[index].id);
+        return Card(margin: EdgeInsets.all(20),
+          color: Color(0xff2fc3),
+          child: Container(
+            color: Colors.white,
+            margin: EdgeInsets.all(1.5),
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text("Name:",
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                    Text(datalist[index].name,
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("License No:",
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                    Text(datalist[index].lis,
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [Text("Hospital:",
+                    style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                  ),
+                    Text(datalist[index].hos,
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("Available From",
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(width: 40,),
+                    Text(datalist[index].from.substring(0,2)+":"+datalist[index].from.substring(2),
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                    Text(" To ",
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                    Text(datalist[index].to.substring(0,2)+":"+datalist[index].to.substring(2),
+                      style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Consumer<update>(
+                  builder: (context,model,widget)=>buttonn(
+                    colour: Colors.grey,
+                    onpress:  () async{
+                      await updated(datalist[index].lis,datalist[index].test,datalist[index].hos,datalist[index].name,datalist[index].id);
+                      await model.show();
+                      Navigator.pushNamed(context, '/book');
+
+                    },
+                    chilld: Text('Book Now'),),
+                )
+              ],
+            ),
+          ),);
       }),
     );
   }
-  Widget CardUI(String lis,String test,String to,String from,String hos,String name,String id){
-    return Card(margin: EdgeInsets.all(20),
-      color: Color(0xff2fc3),
-      child: Container(
-        color: Colors.white,
-        margin: EdgeInsets.all(1.5),
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text("Name:",
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-                Text(name,
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text("License No:",
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-                Text(lis,
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Row(
-              children: [Text("Hospital:",
-                style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-              ),
-                Text(hos,
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text("Available From",
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(width: 40,),
-                Text(from.substring(0,2)+":"+from.substring(2),
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-                Text(" To ",
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-                Text(to.substring(0,2)+":"+to.substring(2),
-                  style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(height: 10,),
-            buttonn(
-              colour: Colors.grey,
-              onpress:  (){
-                print("id is"+id);
-                update(lis,test,hos,name,id);
-                Navigator.pushNamed(context, '/book',arguments:name);
-
-              },
-              chilld: Text('Book Now'),)
-          ],
-        ),
-      ),);
-  }
-  void update(String lis,String test,String hos,String name,String id)
+  void updated(String lis,String test,String hos,String name,String id)
   {
     ref.child("booking").child(uid).set({
       'Name': name,
@@ -137,3 +138,4 @@ class _availState extends State<avail> {
   }
 
 }
+

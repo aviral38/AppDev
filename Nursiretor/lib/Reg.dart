@@ -397,7 +397,7 @@ class _registrationState extends State<registration> {
                       } else if (role == 'Nurse') {
                         Navigator.pushNamed(context, '/nurse');
                       }
-                      if (role == 'Doctor') {
+                      else {
                         Navigator.pushNamed(context, '/nurse');
                       }
                       print('done');
