@@ -20,7 +20,7 @@ The application aims to provide online consultance and healthcare, booking appoi
 ## Nurseirator Flutter Application
 
 <p align="center">
-  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-02-58-01-49_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="623" height="628">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-02-58-01-49_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
 <p align="center">
   <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-02-58-07-70_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="623" height="628">
@@ -44,9 +44,7 @@ The application aims to provide online consultance and healthcare, booking appoi
   <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-03-55-44_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="593" height="598">
 </p>
 <p align="center">
-  <img src="<p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/C6%20(1).PNG" width="593" height="598">
-</p>" width="593" height="598">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-05-30-09_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="593" height="598">
 </p>
 <p align="center">
   <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-05-39-04_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="593" height="598">
