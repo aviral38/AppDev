@@ -9,7 +9,6 @@ A user friendly Android application for elderly person or someone in need of hom
 The application aims to provide online consultance and healthcare, booking appointments by checking nurse-doctor availability, emergency assistance and an interactive, friendly chatbot - HASICS to assist users and provide remedy advices for ill-health. In perennial times when the world is in the middle of a deadly pandemic, the easy-to-install and use application acts as a saviour that can assist in the management of hospitals and services.
 
 ## Features ⚫
-
 1️ Interactive application
 
 2 Patient-Nurse-Doctor login
@@ -21,24 +20,35 @@ The application aims to provide online consultance and healthcare, booking appoi
 ## Nurseirator Flutter Application
 
 <p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/c1.PNG" width="623" height="628">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-02-58-01-49_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
 <p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/c2.PNG" width="623" height="628">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-02-58-07-70_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
 <p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/c3.PNG" width="623" height="628">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-01-12-20_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
 <p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/c4.PNG" width="593" height="598">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-01-34-93_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
 <p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/c5.PNG" width="593" height="598">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-01-51-66_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
 <p align="center">
-  <img src="https://github.com/SARTHAK-27/Nurseirator/blob/master/images/C6%20(1).PNG" width="593" height="598">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-02-03-44_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
 </p>
-
+<p align="center">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-02-22-09_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
+</p>
+<p align="center">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-03-55-44_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
+</p>
+<p align="center">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-05-30-09_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
+</p>
+<p align="center">
+  <img src="https://github.com/aviral38/ApplicationDev/blob/master/Nursiretor/blob/Screenshot_2020-10-07-03-05-39-04_3836a57b5fb9fa7a8a8291ad9aadf86a.jpg" width="480" height="720">
+</p>
 ## Resources 📜💻👀
 
 This project is a starting point for a Flutter Nurseirator application.
