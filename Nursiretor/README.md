@@ -10,15 +10,13 @@ The application aims to provide online consultance and healthcare, booking appoi
 
 ## Features ⚫
 
-1️⃣ Interactive application
+1️ Interactive application
 
-2️⃣ Congenial Chatbot to assist users with their queries and provide remedies for fever, headache, rash, Diarrhoea-like symptoms, Covid-19 symptoms, emergencies like stroke, fracture, lacerations.
+2 Patient-Nurse-Doctor login
 
-3️⃣ Patient-Nurse-Doctor login
+3 Firebase connectivity for Database
 
-4️⃣ Firebase connectivity for Database
-
-5️⃣ User-friendly synchronized application 
+5️ User-friendly synchronized application 
 
 ## Nurseirator Flutter Application
 
