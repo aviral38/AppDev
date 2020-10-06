@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurseirator/NursePage.dart';
 import 'package:nurseirator/Reg.dart';
 import 'package:nurseirator/Registration.dart';
 import 'package:nurseirator/available.dart';
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
           '/bot':(context)=>chatbot(),
           '/avail':(context)=>avail(),
           '/book':(context)=>booked(),
+          '/page':(context)=>Nursepage(),
         },
       ),
     );

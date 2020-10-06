@@ -17,9 +17,11 @@ class _registrationState extends State<registration> {
   @override
   String initial = 'male';
   List gender = ['male', 'female', 'others'];
-  String role = 'Doctor';
+  String role = 'Patient';
   List roole = ['Doctor', 'Nurse', 'Patient'];
-  String name, address, city, email, password, phone, state, zipcode;
+  String state='Uttarakhand';
+  List states=['Andra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jammu and Kashmir','Jharkhand','Karnataka','Kerala','Madya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Orissa','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telagana','Tripura','Uttarakhand','Uttar Pradesh','West Bengal'];
+  String name, address, city, email, password, phone, zipcode;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
@@ -90,7 +92,7 @@ class _registrationState extends State<registration> {
                         address = value;
                       },
                       style: TextStyle(color: Colors.black, fontSize: 15),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.streetAddress,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.black),
                         hintText: 'Enter Your Address',
@@ -256,7 +258,7 @@ class _registrationState extends State<registration> {
                         phone = value;
                       },
                       style: TextStyle(color: Colors.black, fontSize: 15),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.black),
                         hintText: 'Enter Your Phone no',
@@ -323,19 +325,27 @@ class _registrationState extends State<registration> {
                     width: 35,
                   ),
                   Flexible(
-                    child: TextField(
-                      onChanged: (value) {
-                        state = value;
-                      },
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(color: Colors.black),
-                        hintText: 'Enter Your State',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        ),
-                      ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2.0)),
+                      child: DropdownButton(
+                          hint: Text('Enter your State'),
+                          dropdownColor: Colors.grey,
+                          elevation: 5,
+                          icon: Icon(Icons.arrow_drop_down),
+                          iconSize: 30,
+                          value: state,
+                          onChanged: (value) {
+                            setState(() {
+                              state = value;
+                            });
+                          },
+                          items: states.map((value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList()),
                     ),
                   ),
                 ],
@@ -360,7 +370,7 @@ class _registrationState extends State<registration> {
                         zipcode = value;
                       },
                       style: TextStyle(color: Colors.black, fontSize: 15),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.black),
                         hintText: 'Enter Your Zipcode',

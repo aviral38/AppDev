@@ -29,11 +29,12 @@ class _bookedState extends State<booked> {
           height: 650,
           child: Card(
               margin: EdgeInsets.all(20),
-              color: Color(0xff2fc3),
+              color: Color(0xff8AC7DB),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 10,),
                     Text('Booking Details',
                     style: TextStyle(fontWeight: FontWeight.w900,
                     fontSize: 40),),
@@ -53,13 +54,23 @@ class _bookedState extends State<booked> {
                     Text('Corona Test:'+model.test,
                       style: TextStyle(fontWeight: FontWeight.w500,
                           fontSize: 40),),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 30,),
                     Center(
                       child: buttonn(
                         chilld: Text('Cancel booking'),
                         onpress: () async{
                           await cancel();
                           Navigator.pushNamed(context, '/avail');
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                    Center(
+                      child: buttonn(
+                        chilld: Text('View Medicines'),
+                        onpress: () async{
+                          await cancel();
+                          Navigator.pushNamed(context, '/medical');
                         },
                       ),
                     ),

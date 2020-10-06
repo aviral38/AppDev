@@ -11,7 +11,7 @@ class medical extends StatefulWidget {
 final _auth = FirebaseAuth.instance;
 final User user = _auth.currentUser;
 final ref=FirebaseDatabase.instance.reference();
-
+final update u=new update();
 class _medicalState extends State<medical> {
   @override
   void initState()
@@ -21,165 +21,183 @@ class _medicalState extends State<medical> {
   }
   @override
   Widget build(BuildContext context) {
-    //update u=new update();
     final update uu=Provider.of<update>(context);
     //Provider.of<update>(context).up();
-    var mon=uu.mon,tue=uu.tue,wed=uu.wed,thu=uu.thu,fri=uu.fri,sat=uu.sat,sun=uu.sun;
+    var monu=uu.mon,tue=uu.tue,wed=uu.wed,thu=uu.thu,fri=uu.fri,sat=uu.sat,sun=uu.sun;
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: ListView(
-        children: [
-          Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+      body: Consumer<update>(
+        builder: (context,model,widget)=> ListView(
+          children: [
+            Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                  margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                  decoration: BoxDecoration(border: Border.all(),
+                  color: Colors.grey),
+                  child: Column(
+                    children: [
+                      Text('Monday',
+                      style: TextStyle(fontSize: 50,
+                      fontWeight: FontWeight.bold),),
+                      Text(model.mon,style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    ],
+                  ),
+                ),
+            ),
+            Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
                 margin: EdgeInsets.only(left: 20,right: 20,top: 20),
                 decoration: BoxDecoration(border: Border.all(),
-                color: Colors.grey),
+                    color: Colors.grey),
                 child: Column(
                   children: [
-                    Text('Monday',
-                    style: TextStyle(fontSize: 50,
-                    fontWeight: FontWeight.bold),),
-                    Text(mon,style: TextStyle(fontSize: 50,
+                    Text('Tuesday',
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    Text(tue,style: TextStyle(fontSize: 50,
                         fontWeight: FontWeight.bold),),
                   ],
                 ),
               ),
-          ),
-          Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-              decoration: BoxDecoration(border: Border.all(),
-                  color: Colors.grey),
-              child: Column(
-                children: [
-                  Text('Tuesday',
-                    style: TextStyle(fontSize: 50,
+            ),
+            Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                decoration: BoxDecoration(border: Border.all(),
+                    color: Colors.grey),
+                child: Column(
+                  children: [
+                    Text('Wednesday',
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    Text(wed,style: TextStyle(fontSize: 50,
                         fontWeight: FontWeight.bold),),
-                  Text(tue,style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold),),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-              decoration: BoxDecoration(border: Border.all(),
-                  color: Colors.grey),
-              child: Column(
-                children: [
-                  Text('Wednesday',
-                    style: TextStyle(fontSize: 50,
+            Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                decoration: BoxDecoration(border: Border.all(),
+                    color: Colors.grey),
+                child: Column(
+                  children: [
+                    Text('Thursday',
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    Text(thu,style: TextStyle(fontSize: 50,
                         fontWeight: FontWeight.bold),),
-                  Text(wed,style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold),),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-              decoration: BoxDecoration(border: Border.all(),
-                  color: Colors.grey),
-              child: Column(
-                children: [
-                  Text('Thursday',
-                    style: TextStyle(fontSize: 50,
+            Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                decoration: BoxDecoration(border: Border.all(),
+                    color: Colors.grey),
+                child: Column(
+                  children: [
+                    Text('Friday',
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    Text(fri,style: TextStyle(fontSize: 50,
                         fontWeight: FontWeight.bold),),
-                  Text(thu,style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold),),
-                ],
+                  ],
+                ),
+              ),
+            ),Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                decoration: BoxDecoration(border: Border.all(),
+                    color: Colors.grey),
+                child: Column(
+                  children: [
+                    Text('Saturday',
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    Text(sat,style: TextStyle(fontSize: 50,
+                        fontWeight: FontWeight.bold),),
+                  ],
+                ),
               ),
             ),
-          ),
-          Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-              decoration: BoxDecoration(border: Border.all(),
-                  color: Colors.grey),
-              child: Column(
-                children: [
-                  Text('Friday',
-                    style: TextStyle(fontSize: 50,
+            Center(
+              child: Container(
+                height: 200,
+                width:320,
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                decoration: BoxDecoration(border: Border.all(),
+                    color: Colors.grey),
+                child: Column(
+                  children: [
+                    Text('Sunday',
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold),),
+                    Text(sun,style: TextStyle(fontSize: 50,
                         fontWeight: FontWeight.bold),),
-                  Text(fri,style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold),),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-              decoration: BoxDecoration(border: Border.all(),
-                  color: Colors.grey),
-              child: Column(
-                children: [
-                  Text('Saturday',
-                    style: TextStyle(fontSize: 50,
-                        fontWeight: FontWeight.bold),),
-                  Text(sat,style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold),),
-                ],
+            SizedBox(height: 20,),
+            Container(
+              height: 50,
+              width: 50,
+              child: buttonn(
+                colour: Colors.orangeAccent,
+                onpress: (){
+                  Navigator.pushNamed(context, '/patient');
+                },
+                chilld: Text("Update Medicines",
+                  style: TextStyle(fontWeight: FontWeight.w700,
+                      fontSize: 30),),
               ),
             ),
-          ),
-          Center(
-            child: Container(
-              height: 200,
-              width:320,
-              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-              decoration: BoxDecoration(border: Border.all(),
-                  color: Colors.grey),
-              child: Column(
-                children: [
-                  Text('Sunday',
-                    style: TextStyle(fontSize: 50,
-                        fontWeight: FontWeight.bold),),
-                  Text(sun,style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold),),
-                ],
+            SizedBox(height: 20,),
+            Container(
+              height: 50,
+              width: 50,
+              child: buttonn(
+                colour: Colors.orangeAccent,
+                onpress: (){
+                  Navigator.pushNamed(context, '/avail');
+                },
+                chilld: Text("Book Nurse",
+                style: TextStyle(fontWeight: FontWeight.w700,
+                fontSize: 30),),
               ),
             ),
-          ),
-          SizedBox(height: 20,),
-          Container(
-            height: 50,
-            width: 50,
-            child: buttonn(
-              colour: Colors.orangeAccent,
-              onpress: (){
-                Navigator.pushNamed(context, '/avail');
-              },
-              chilld: Text("Book Nurse",
-              style: TextStyle(fontWeight: FontWeight.w700,
-              fontSize: 30),),
-            ),
-          ),
 
-        ],
+          ],
 
+        ),
       ),
     );
+  }
+  void dat() async{
+    await u.up();
   }
  /* void dataa()
   {

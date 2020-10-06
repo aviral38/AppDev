@@ -113,6 +113,7 @@ class _availState extends State<avail> {
                     colour: Colors.grey,
                     onpress:  () async{
                       await updated(datalist[index].lis,datalist[index].test,datalist[index].hos,datalist[index].name,datalist[index].id);
+                      await book(datalist[index].lis,datalist[index].test,datalist[index].hos,datalist[index].name,datalist[index].id);
                       await model.show();
                       Navigator.pushNamed(context, '/book');
 
@@ -125,9 +126,20 @@ class _availState extends State<avail> {
       }),
     );
   }
-  void updated(String lis,String test,String hos,String name,String id)
+  void updated(String lis,String test,String hos,String name,String id)async
   {
-    ref.child("booking").child(uid).set({
+    await ref.child("booking").child(name).set({
+      'Name': name,
+      'liscense':lis,
+      'test':test,
+      'hospital':hos,
+      'uid': uid,
+      'book':id,
+    });
+  }
+  void book(String lis,String test,String hos,String name,String id)async
+  {
+    await ref.child("booking2").child(uid).set({
       'Name': name,
       'liscense':lis,
       'test':test,

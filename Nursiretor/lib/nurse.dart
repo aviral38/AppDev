@@ -1,30 +1,207 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:nurseirator/update.dart';
 import 'button.dart';
+import 'package:provider/provider.dart';
+
 class nurse extends StatefulWidget {
   @override
   _nurseState createState() => _nurseState();
 }
+
 final DBRef = FirebaseDatabase.instance.reference();
 FirebaseDatabase fb;
 String initial = 'one week ago';
 List test = ['one week ago', 'one month ago', 'more than a month ago'];
-String defaul1='00';
-List deef1=['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];
-String defaul2='00';
-List deef2=['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59'];
-String defa1='00';
-List deefe1=['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];
-String def2='00';
-List deefe2=['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59'];
+String defaul1 = '00';
+List deef1 = [
+  '00',
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23'
+];
+String defaul2 = '00';
+List deef2 = [
+  '00',
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+  '24',
+  '25',
+  '26',
+  '27',
+  '28',
+  '29',
+  '30',
+  '31',
+  '32',
+  '33',
+  '34',
+  '35',
+  '36',
+  '37',
+  '38',
+  '39',
+  '40',
+  '41',
+  '42',
+  '43',
+  '44',
+  '45',
+  '46',
+  '47',
+  '48',
+  '49',
+  '50',
+  '51',
+  '52',
+  '53',
+  '54',
+  '55',
+  '56',
+  '57',
+  '58',
+  '59'
+];
+String defa1 = '00';
+List deefe1 = [
+  '00',
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23'
+];
+String def2 = '00';
+List deefe2 = [
+  '00',
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+  '24',
+  '25',
+  '26',
+  '27',
+  '28',
+  '29',
+  '30',
+  '31',
+  '32',
+  '33',
+  '34',
+  '35',
+  '36',
+  '37',
+  '38',
+  '39',
+  '40',
+  '41',
+  '42',
+  '43',
+  '44',
+  '45',
+  '46',
+  '47',
+  '48',
+  '49',
+  '50',
+  '51',
+  '52',
+  '53',
+  '54',
+  '55',
+  '56',
+  '57',
+  '58',
+  '59'
+];
+
 class _nurseState extends State<nurse> {
   final _auth = FirebaseAuth.instance;
-  String lis,hos,name;
+  String lis, hos, name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Color(0xffEEC9BC),
       body: Container(
         margin: EdgeInsets.all(10),
         padding: EdgeInsets.all(10),
@@ -52,7 +229,7 @@ class _nurseState extends State<nurse> {
                   Flexible(
                     child: TextField(
                       onChanged: (value) {
-                        name=value;
+                        name = value;
                       },
                       style: TextStyle(color: Colors.black, fontSize: 15),
                       keyboardType: TextInputType.emailAddress,
@@ -81,10 +258,10 @@ class _nurseState extends State<nurse> {
                   Flexible(
                     child: TextField(
                       onChanged: (value) {
-                        lis=value;
+                        lis = value;
                       },
                       style: TextStyle(color: Colors.black, fontSize: 15),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.black),
                         hintText: 'Enter Your Medical License No',
@@ -112,13 +289,15 @@ class _nurseState extends State<nurse> {
                   ),
                   Flexible(
                     child: TextField(
-                      onChanged: (value) {hos=value;},
+                      onChanged: (value) {
+                        hos = value;
+                      },
                       style: TextStyle(color: Colors.black, fontSize: 15),
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.black),
                         hintText: 'Enter Your Hospital Name',
-                        border:OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                         ),
                       ),
@@ -137,14 +316,16 @@ class _nurseState extends State<nurse> {
                     children: [
                       Text(
                         'Availability',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       SizedBox(
                         width: 25,
                       ),
                       Text(
                         'Time in 24hr format',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ],
                   ),
@@ -152,7 +333,8 @@ class _nurseState extends State<nurse> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2.0)),
+                            border:
+                                Border.all(color: Colors.black, width: 2.0)),
                         child: DropdownButton(
                             hint: Text('Enter your time'),
                             dropdownColor: Colors.blueGrey,
@@ -162,7 +344,7 @@ class _nurseState extends State<nurse> {
                             value: defaul1,
                             onChanged: (value) {
                               setState(() {
-                               defaul1 = value;
+                                defaul1 = value;
                               });
                             },
                             items: deef1.map((value) {
@@ -172,10 +354,13 @@ class _nurseState extends State<nurse> {
                               );
                             }).toList()),
                       ),
-                      SizedBox(width: 20,),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2.0)),
+                            border:
+                                Border.all(color: Colors.black, width: 2.0)),
                         child: DropdownButton(
                             hint: Text('Enter your time'),
                             dropdownColor: Colors.blueGrey,
@@ -200,14 +385,16 @@ class _nurseState extends State<nurse> {
                   Center(
                     child: Text(
                       'To',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                     ),
                   ),
                   Row(
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2.0)),
+                            border:
+                                Border.all(color: Colors.black, width: 2.0)),
                         child: DropdownButton(
                             hint: Text('Enter your time'),
                             dropdownColor: Colors.blueGrey,
@@ -227,10 +414,13 @@ class _nurseState extends State<nurse> {
                               );
                             }).toList()),
                       ),
-                      SizedBox(width: 20,),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2.0)),
+                            border:
+                                Border.all(color: Colors.black, width: 2.0)),
                         child: DropdownButton(
                             hint: Text('Enter your time'),
                             dropdownColor: Colors.blueGrey,
@@ -252,7 +442,6 @@ class _nurseState extends State<nurse> {
                       ),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -290,7 +479,6 @@ class _nurseState extends State<nurse> {
               height: 20,
             ),
             Row(
-
               children: [
                 Text(
                   'Corona Test',
@@ -325,29 +513,77 @@ class _nurseState extends State<nurse> {
                 ),
               ],
             ),
+            SizedBox(
+              height: 20,
+            ),
+            buttonn(
+              chilld: Text(
+                'Submit',
+                style: TextStyle(fontSize: 30),
+              ),
+              colour: Colors.white70,
+              onpress: () async {
+                await write();
+                dialog('Details updated Successfully');
+              },
+            ),
             SizedBox(height: 20,),
-            buttonn(chilld: Text('Submit'),
-            colour: Colors.grey,
-            onpress: (){
-              write();
-            },)
+            Consumer<update>(
+              builder: (context, model, widget) => buttonn(
+                  chilld: Text(
+                    'View Bookings',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  colour: Colors.white70,
+                  onpress: () async {
+                    ref.child('nurse').child(uid).once().then((DataSnapshot dataSnapshot) {
+                      if (dataSnapshot.value != null) {
+                        void datta() async {
+                          await model.nameof();
+                          await model.nursedetail();
+                          Navigator.pushNamed(context, '/page');
+                        }
+
+                        datta();
+                      } else {
+                        dialog('Check your internet connection');
+                      }
+                    });
+                  }),
+            ),
           ],
         ),
       ),
     );
   }
-  void write()
-  {
+
+  void write() {
     User user = _auth.currentUser;
     var uid = user.uid;
     DBRef.child("available").child(uid).set({
-      'name':name,
-      'License':lis,
-      'hospital':hos,
-      'from':defaul1+defaul2,
-      'to':defa1+def2,
-      'corona test':initial,
-      'id':uid,
+      'name': name,
+      'License': lis,
+      'hospital': hos,
+      'from': defaul1 + defaul2,
+      'to': defa1 + def2,
+      'corona test': initial,
+      'id': uid,
     });
+  }
+
+  Future<void> dialog(var a) async {
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Detail Submitted",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+            ),
+            content: Text(a),
+            elevation: 24.0,
+          );
+        });
   }
 }

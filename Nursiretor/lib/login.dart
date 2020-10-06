@@ -4,11 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:nurseirator/medicine.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:provider/provider.dart';
+import 'update.dart';
 class loginScreen extends StatefulWidget {
   @override
   _loginScreenState createState() => _loginScreenState();
 }
 final _auth=FirebaseAuth.instance;
+final ref=FirebaseDatabase.instance.reference();
 bool showSpinner = false;
 String email;
 String password;
@@ -41,7 +44,7 @@ class _loginScreenState extends State<loginScreen> {
                   onChanged: (value) {
                     email=value;
                   },
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  style: TextStyle(color: Colors.black87, fontSize: 25),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.black87),
@@ -57,7 +60,7 @@ class _loginScreenState extends State<loginScreen> {
                   onChanged: (value) {
                     password=value;
                   },
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  style: TextStyle(color: Colors.black87, fontSize: 25),
                   decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.black87),
                     hintText: 'Enter Your Password',
@@ -105,40 +108,85 @@ class _loginScreenState extends State<loginScreen> {
                   ),
                 ),
                 SizedBox(height: 10,),
-                buttonn(
-                  colour: Colors.lightBlue,
-                  chilld: Text('LogIn'),
-                  onpress: () async{
-                    setState(() {
-                      showSpinner = true;
-                    });
-                    try {
-                      final user = await _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-                      if (user != null){
-                        if (role == 'Patient') {
-                          Navigator.pushNamed(context, '/patient');
-                        }
-                        else if (role == 'Nurse') {
-                          Navigator.pushNamed(context, '/nurse');
-                        }
-                        else {
-                          Navigator.pushNamed(context, '/nurse');
-                        }
-                        print('done');
-                      }
+                Consumer<update>(
+                  builder: (context,model,widget)=> buttonn(
+                    colour: Colors.lightBlue,
+                    chilld: Text('LogIn'),
+                    onpress: () async{
                       setState(() {
-                        showSpinner = false;
+                        showSpinner = true;
                       });
-                    }
-                    catch (e) {
-                      print(e);
-                      setState(() {
-                        showSpinner = false;
-                      });
-                    }
+                      try {
+                        final user = await _auth.signInWithEmailAndPassword(
+                            email: email, password: password);
+                        if (user != null){
+                          final User user = _auth.currentUser;
+                          var uid = user.uid;
+                          if (role == 'Patient') {
+                            ref.child('patient').child(uid).once().then((DataSnapshot dataSnapshot) {
+                              if(dataSnapshot.value!=null) {
+                                void data() async{
+                                  await model.up();
+                                  Navigator.pushNamed(context, '/medical');
+                                  //print('uid is'+uid+'2nd is'+model.uid);
+                                  //print('iii'+uid);
+                                }
+                                data();
+                              }
+                              else{
+                                dialog('The Role Selected is Wrong');
+                                print(false);
+                              }
 
-                  },
+                            });
+                          }
+                          else if (role == 'Nurse') {
+                            ref.child('nurse').child(uid).once().then((DataSnapshot dataSnapshot) {
+                              if(dataSnapshot.value!=null) {
+                                void datta() async{
+                                  await model.nameof();
+                                  await model.nursedetail();
+                                  Navigator.pushNamed(context, '/page');
+                                  //print('uid is'+uid+'2nd is'+model.uid);
+                                  //print('iii'+uid);
+                                }
+                                datta();
+                              }
+                              else{
+                                dialog('The Role Selected is Wrong');
+                                print(false);
+                              }
+
+                            });
+                          }
+                          else {
+                            ref.child('doctor').child(uid).once().then((DataSnapshot dataSnapshot) {
+                              if(dataSnapshot.value!=null) {
+                                Navigator.pushNamed(context, '/nurse');
+                              }
+                              else{
+                                dialog('The Role Selected is Wrong');
+                                print(false);
+                              }
+
+                            });
+                          }
+                        }
+                        setState(() {
+                          showSpinner = false;
+                        });
+                      }
+                      catch (e) {
+                        dialog(e.toString());
+                        print(e);
+
+                        setState(() {
+                          showSpinner = false;
+                        });
+                      }
+
+                    },
+                  ),
                 ),
               ],
             ),
@@ -146,6 +194,18 @@ class _loginScreenState extends State<loginScreen> {
         ),
       ),
     );
+  }
+  Future<void> dialog(var a) async{
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(a),
+            elevation: 24.0,
+          );
+        });
   }
 
 }
