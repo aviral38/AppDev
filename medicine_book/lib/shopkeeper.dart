@@ -119,6 +119,8 @@ class _shop_regState extends State<shop_reg> {
                   width: 250,
                   child: TextField(
                       decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white)),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white)),
                         hintStyle: TextStyle(color: Colors.white),

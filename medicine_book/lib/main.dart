@@ -3,6 +3,7 @@ import 'package:photo/homepage.dart';
 import 'image.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'shopkeeper.dart';
+import 'upload_med.dart';
 void main() {
   runApp(MyApp());
 }
@@ -17,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: shop_reg(),
+      home: med_upload(),
     );
   }
 }
